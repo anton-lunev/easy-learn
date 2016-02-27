@@ -19,12 +19,12 @@ angular.module('easy-learn')
                     }
                 },
                 resolve: {
-                    collections: function (localStorageService) {
-                        return localStorageService.get('list') || {};
+                    collections(dbService) {
+                        return dbService.getCollections();
                     }
                 }
             })
-            
+
             .state('route.list', {
                 url: '/',
                 views: {

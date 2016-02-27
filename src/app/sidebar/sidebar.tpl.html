@@ -11,8 +11,8 @@
     </section>
     <section class="sidebar-containers">
         <ul>
-            <li ng-repeat="(key, collection) in sidebar.collections track by $index"
-                ui-sref-active="active" ui-sref="route.list.item({id: key})">
+            <li ng-repeat="collection in sidebar.collections track by collection.$loki"
+                ui-sref-active="active" ui-sref="route.list.item({id: collection.$loki})">
                 <a>
                     <div class="info">
                         <div class="name" ng-bind="collection.name"></div>
@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="action">
-                        <span class="btn circular" ng-click="sidebar.removeCollection(key)">
+                        <span class="btn circular" ng-click="sidebar.removeCollection(collection)">
                             <span class="icon icon-delete"></span>
                         </span>
                     </div>

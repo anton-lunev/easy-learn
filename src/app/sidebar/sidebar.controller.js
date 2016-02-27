@@ -1,21 +1,16 @@
 angular.module('sidebar')
-    .controller('SidebarController', function ($scope, collections, localStorageService) {
+    .controller('SidebarController', function ($scope, collections, localStorageService, dbService) {
         let ctrl = this;
         
         ctrl.collections = collections;
 
         ctrl.addCollection = function () {
-            let name = 'Collection ' + (+Object.keys(collections).length + 1);
-            collections[name] = {
-                name: name,
+            dbService.addCollection({
+                name: 'New Collection',
                 description: 'description',
                 list: []
-            };
-            localStorageService.set('list', collections);
+            });
         };
 
-        ctrl.removeCollection = function (id) {
-            delete collections[id];
-            localStorageService.set('list', collections);
-        }
+        ctrl.removeCollection = dbService.deleteCollection;
     });

@@ -10,8 +10,8 @@ angular.module('list')
                 }
             },
             resolve: {
-                collectionId: function ($stateParams) {
-                    return $stateParams.id
+                collection($stateParams, dbService, collections) {
+                    return dbService.getCollection($stateParams.id);
                 }
             }
         })

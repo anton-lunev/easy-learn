@@ -1,40 +1,27 @@
 angular.module('list')
-    .controller('ListController', function ($scope, $animate, localStorageService, collections, collectionId, listService) {
+    .controller('ListController', function ($scope, $animate, localStorageService, collections, collection, listService,
+                                            dbService) {
         let ctrl = this;
-        let listInStore = collections[collectionId].list;
+
+        ctrl.collection = collection;
 
         ctrl.timer = listService.timer;
-        ctrl.list = listInStore || [];
-        ctrl.collection = collections[collectionId];
-        ctrl.time = localStorageService.get('time') || 1;
+        ctrl.timer.time = localStorageService.get('time') || 1;
 
-        ctrl.toggleTimer = function () {
-            if (ctrl.timer.timerId) {
-                clearTimeout(ctrl.timer.timerId);
-                ctrl.timer.timerId = null;
-            } else {
-                ctrl.timer.timerId = setTimeout(function tick() {
-                    if (ctrl.list.length) {
-                        let word = ctrl.list[getRandomInt(0, ctrl.list.length - 1)];
-                        new Notification(word.eng, {
-                            body: word.translate
-                        });
-                    }
-                    ctrl.timer.timerId = setTimeout(tick, ctrl.time * 60 * 1000);
-                }, 0);
+        ctrl.toggleTimer = listService.toggleTimer;
+
+        $scope.$watch('list.collection.list', (val, oldVal) => {
+            if (!angular.equals(val, oldVal)) {
+                dbService.updateCollection(ctrl.collection);
             }
-        };
-
-        $scope.$watch('list', function () {
-            localStorageService.set('list', collections);
         }, true);
 
-        $scope.$watch('time', function () {
-            localStorageService.set('time', ctrl.time);
+        $scope.$watch('list.timer.time', () => {
+            localStorageService.set('time', ctrl.timer.time);
         });
 
         ctrl.addWord = function (word) {
-            ctrl.list.unshift(word);
+            ctrl.collection.list.unshift(word);
             new Notification('New word', {
                 body: word.eng + ' - ' + word.translate
             });
@@ -42,10 +29,6 @@ angular.module('list')
             ctrl.word = '';
         };
         ctrl.removeWord = function (index) {
-            ctrl.list.splice(index, 1);
+            ctrl.collection.list.splice(index, 1);
         };
-
-        function getRandomInt(min, max) {
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
     });

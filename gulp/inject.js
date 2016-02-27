@@ -25,8 +25,8 @@ gulp.task('inject', function () {
 
     return gulp.src(conf.paths.src + '/index.html')
         .pipe($.inject(es.merge(
-            injectVendors.pipe($.angularFilesort()),
             injectScripts.pipe($.angularFilesort()),
+            injectVendors.pipe($.angularFilesort()),
             injectStyles
         ), injectOptions))
         .pipe(gulp.dest(conf.paths.tmp))

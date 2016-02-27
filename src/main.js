@@ -26,13 +26,13 @@ function createMainWindow() {
     return win;
 }
 
-ipc.on('close-main-window', function () {
+ipc.on('close-main-window', () => {
     mainWindow.close();
 });
-ipc.on('minimize-main-window', function () {
+ipc.on('minimize-main-window', () => {
     mainWindow.minimize();
 });
-ipc.on('maximize-main-window', function () {
+ipc.on('maximize-main-window', () => {
     mainWindow.maximize();
 });
 
@@ -46,8 +46,8 @@ app.on('ready', () => {
     mainWindow = createMainWindow();
 });
 
-app.on('window-all-closed', function() {
-   if (process.platform !== 'darwin') {
-       app.quit();
-   }
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
 });
