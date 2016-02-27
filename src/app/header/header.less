@@ -1,0 +1,52 @@
+header {
+    background: #fff;
+}
+
+.buttons {
+    padding: 4px 7px;
+
+    &:hover .button {
+        &--close {
+            background-color: #ff5f52;
+            border-color: #e33e32;
+            background-image: url("../images/close@2x.png");
+        }
+        &--minimize {
+            background-color: #ffbe05;
+            border-color: #e2a100;
+            background-image: url("../images/minimize@2x.png");
+        }
+        &--fullscreen {
+            background-color: #15cc35;
+            border-color: #17b230;
+            background-image: url("../images/fullscreen@2x.png");
+        }
+    }
+}
+
+.button {
+    box-sizing: border-box;
+    display: inline-block;
+    background: white;
+    margin-right: 4px;
+    height: 12px;
+    width: 12px;
+    border: 1px solid #d3d3d3;
+    border-radius: 6px;
+    box-shadow: 0 1px 1px 0 rgba(234, 234, 234, 0.5);
+    -webkit-app-region: no-drag;
+    background-size: 10px 10px;
+    transition: all .2s;
+    &--close {
+        background-color: #ff5f52;
+        border-color: #e33e32;
+    }
+    &--minimize {
+        background-color: #ffbe05;
+        border-color: #e2a100;
+    }
+    &--fullscreen {
+        background-color: #15cc35;
+        border-color: #17b230;
+    }
+}

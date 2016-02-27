@@ -1,0 +1,27 @@
+<div class="list-container">
+    <div class="time-input">
+        <button class="action" ng-click="list.toggleTimer()">{{list.timer.timerId ? 'STOP' : 'START'}}</button>
+        <label for="time">time</label>
+        <input id="time" type="number" ng-model="list.time">
+    </div>
+
+    <div class="top-fix">
+        <h2 ng-bind="list.collection.name"></h2>
+        <!--<h4 ng-bind="collection.description"></h4>-->
+
+        <form role="form" ng-submit="list.addWord(list.word)">
+            <input type="text" ng-model="list.word.eng" placeholder="New word" class="form-control" required>
+            <input type="text" ng-model="list.word.translate" placeholder="translate" class="form-control" required>
+            <button type="submit" class="btn btn--circle btn--add icon"></button>
+        </form>
+    </div>
+    <div class="list">
+        <div class="list__item" ng-repeat="word in list.list track by $index">
+            <div class="list__item-content">
+                <input type="text" ng-model="word.eng" class="form-control">
+                <input type="text" ng-model="word.translate" class="form-control">
+                <button class="btn btn--circle btn--remove icon" ng-click="list.removeWord($index)"></button>
+            </div>
+        </div>
+    </div>
+</div>

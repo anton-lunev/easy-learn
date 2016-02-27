@@ -1,0 +1,149 @@
+@font-face {
+    font-family: "kitematic";
+    src: url("../fonts/kitematic.eot");
+    src: url("../fonts/kitematic.eot?#iefix") format("embedded-opentype"), url("../fonts/kitematic.woff") format("woff"), url("../fonts/kitematic.ttf") format("truetype"), url("../fonts/kitematic.svg#kitematic") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -webkit-font-smoothing: subpixel-antialiased;
+    text-rendering: optimizelegibility;
+    font-family: "Helvetica Neue", Helvetica, Segoe UI, Arial, "Lucida Grande", sans-serif;
+    cursor: default;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #3f5167;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+}
+
+input, button, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    outline: none;
+}
+
+input[type="text"], input[type="number"] {
+    border: 0;
+    border-bottom: 1px solid #e6edf4;
+    color: #556473;
+    font-weight: 300;
+    padding: 5px;
+    transition: all 0.25s;
+    &:focus {
+        outline: 0;
+        border-bottom: 1px solid #22b8eb;
+    }
+}
+
+.btn .icon {
+    font-size: 9px;
+    margin-right: 0.4rem;
+}
+
+.icon-add:before {
+    content: "a";
+}
+
+.containers {
+    box-sizing: border-box;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+
+    &__sidebar {
+        background-color: white;
+        margin: 0;
+        border-right: 1px solid #e6edf4;
+        display: flex;
+        flex-direction: column;
+        min-width: 220px;
+        box-sizing: border-box;
+        position: relative;
+    }
+
+    &__sidebar-content {
+        box-shadow: 1px 0 0 #e6edf4;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        flex: 1 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__header {
+        -webkit-app-region: drag;
+        -webkit-user-select: none;
+        display: flex;
+        border-bottom: 1px solid #e6edf4;
+    }
+    &__content {
+        background-color: #f6f8fb;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        flex: 1 0;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+    }
+}
+
+.content {
+    text-align: center;
+}
+
+
+/* ************************************** */
+/* Mandatory CSS required for ng-sortable */
+/* ************************************** */
+
+.as-sortable-item, .as-sortable-placeholder {
+    display: block;
+}
+
+.as-sortable-item {
+    touch-action: none;
+}
+
+.as-sortable-item-handle {
+    cursor: move;
+    cursor: -webkit-grab;
+}
+
+.as-sortable-placeholder {
+}
+
+.as-sortable-drag {
+    position: absolute;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.as-sortable-hidden {
+    display: none !important;
+}
+
+.as-sortable-un-selectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+@import "header/header";
+@import "list/list";
+@import "sidebar/sidebar";
