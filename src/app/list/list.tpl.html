@@ -2,7 +2,7 @@
     <div class="time-input">
         <button class="action" ng-click="list.toggleTimer(list.collection.list)">{{list.timer.timerId ? 'STOP' : 'START'}}</button>
         <label for="time">time</label>
-        <input id="time" type="number" ng-model="list.timer.time">
+        <input id="time" type="number" min="1" ng-model="list.timer.time">
     </div>
 
     <div class="top-fix">
@@ -11,7 +11,8 @@
 
         <form role="form" ng-submit="list.addWord(list.word)">
             <input type="text" ng-model="list.word.eng" placeholder="New word" class="form-control" required>
-            <input type="text" ng-model="list.word.translate" placeholder="translate" class="form-control" required>
+            <input type="text" ng-model="list.word.translate" placeholder="translate" class="form-control"
+                   ng-focus="list.getTranslation(list.word.eng)" required>
             <button type="submit" class="btn btn--circle btn--add icon"></button>
         </form>
     </div>

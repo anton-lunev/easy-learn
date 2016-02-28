@@ -28,7 +28,7 @@ function createMainWindow() {
 }
 
 function setApplicationMenu() {
-    var template = [
+    let template = [
         {
             label: "Application",
             submenu: [
@@ -76,7 +76,10 @@ app.on('activate', () => {
 
 app.on('ready', () => {
     mainWindow = createMainWindow();
-    setApplicationMenu();
+    console.log(process.env['NODE_ENV']);
+    if (process.env['NODE_ENV'] != 'dev') {
+        setApplicationMenu();
+    }
 });
 
 app.on('window-all-closed', () => {

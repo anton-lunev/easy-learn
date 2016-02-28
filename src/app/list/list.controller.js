@@ -7,8 +7,21 @@ angular.module('list')
 
         ctrl.timer = listService.timer;
         ctrl.timer.time = localStorageService.get('time') || 1;
+        ctrl.word = {
+            eng: null,
+            translate: null
+        };
 
         ctrl.toggleTimer = listService.toggleTimer;
+        ctrl.getTranslation = function (word) {
+            if (!word) {
+                return;
+            }
+
+            listService.getTranslation(word).then((translation) => {
+                ctrl.word.translate = translation;
+            });
+        };
 
         $scope.$watch('list.collection.list', (val, oldVal) => {
             if (!angular.equals(val, oldVal)) {
@@ -28,6 +41,7 @@ angular.module('list')
 
             ctrl.word = '';
         };
+
         ctrl.removeWord = function (index) {
             ctrl.collection.list.splice(index, 1);
         };

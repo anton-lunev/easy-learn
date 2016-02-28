@@ -5,7 +5,7 @@
   "publishName": "myApp",
   "electronVersion": "0.36.8",
   "scripts": {
-    "start": "electron ./dist/main.js",
+    "start": "export NODE_ENV='dev'; electron ./dist/main.js",
     "build": "electron-packager ./dist/ easy-learn --platform=darwin --arch=x64 --out ~/Desktop/easy-learn --asar --version 0.36.8 --overwrite --icon=./src/images/app-icon.icns",
     "buildwin": "electron-packager ./ easy-learn --platform=win32 --arch=x64 --out ~/Desktop/easy-learn --asar --version 0.36.8 --overwrite --icon=./src/images/app-icon.ico"
   },
