@@ -1,6 +1,6 @@
 angular.module('list')
     .controller('ListController', function ($scope, $animate, localStorageService, collections, collection, listService,
-                                            dbService) {
+                                            dbService, $timeout) {
         let ctrl = this;
 
         ctrl.collection = collection;
@@ -38,6 +38,10 @@ angular.module('list')
             new Notification('New word', {
                 body: word.eng + ' - ' + word.translate
             });
+            
+            $timeout(() => {
+                listService.playAudio(word.eng);
+            }, 1000);
 
             ctrl.word = '';
         };

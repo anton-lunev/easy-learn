@@ -1,5 +1,5 @@
 angular.module('list')
-    .factory('listService', function ($http) {
+    .factory('listService', function ($http, $timeout) {
         let timerId = null;
         let time = 1;
 
@@ -18,10 +18,17 @@ angular.module('list')
                         new Notification(word.eng, {
                             body: word.translate
                         });
+                        $timeout(() => {
+                            playAudio(word.eng);
+                        }, 1000);
                     }
                     service.timer.timerId = setTimeout(tick, service.timer.time * 60 * 1000);
                 }, 0);
             }
+        }
+
+        function playAudio(word) {
+            new Audio('https://translate.googleapis.com/translate_tts?client=gtx&tl=en&q=' + decodeURI(word)).play();
         }
 
         function getTranslation(query) {
@@ -64,7 +71,7 @@ angular.module('list')
         let service = {
             toggleTimer,
             getTranslation,
-
+            playAudio,
             timer: {
                 time: time,
                 timerId: timerId
