@@ -1,6 +1,6 @@
 angular.module('list')
     .controller('ListController', function ($scope, $animate, localStorageService, collections, collection, listService,
-                                            dbService, $timeout) {
+                                            dbService, $timeout, googleTranslateService) {
         let ctrl = this;
 
         ctrl.collection = collection;
@@ -18,7 +18,7 @@ angular.module('list')
                 return;
             }
 
-            listService.getTranslation(word).then((translation) => {
+            googleTranslateService.getTranslation(word).then((translation) => {
                 ctrl.word.translate = translation;
             });
         };
@@ -39,10 +39,7 @@ angular.module('list')
                 body: word.eng + ' - ' + word.translate
             });
             
-            $timeout(() => {
-                listService.playAudio(word.eng);
-            }, 1000);
-
+            googleTranslateService.playAudio(word.eng, 1000);
             ctrl.word = '';
         };
 

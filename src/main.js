@@ -14,9 +14,9 @@ function onClosed() {
 
 function createMainWindow() {
     const win = new BrowserWindow({
-        frame: false,
-        height: 395,
-        width: 650,
+        'frame': false,
+        'height': 395,
+        'width': 650,
         'min-width': 650,
         'min-height': 395
     });

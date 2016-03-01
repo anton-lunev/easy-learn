@@ -2,5 +2,5 @@
   "name": "easy-learn",
   "version": "0.1.0",
   "main": "./main.js",
-  "electronVersion": "0.36.8"
+  "electronVersion": "0.36.9"
 }

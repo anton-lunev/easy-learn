@@ -2,15 +2,24 @@ angular.module('db', [])
     .factory('dbService', function CollectionService($q, Loki) {
         let _db;
         let _collections;
+        initDB();
+        
+        return {
+            getCollections,
+            getCollection,
+            addCollection,
+            updateCollection,
+            deleteCollection
+        };
 
-        (function initDB() {
+        function initDB() {
             let indexAdapter = new LokiIndexedAdapter('easy-learn');
             _db = new Loki('list', {
                 autosave: true,
                 autosaveInterval: 1000, // 1 second
                 adapter: indexAdapter
             });
-        })();
+        }
 
         function getCollections() {
             return $q(function (resolve, reject) {
@@ -47,12 +56,4 @@ angular.module('db', [])
         function deleteCollection(collection) {
             _collections.remove(collection);
         }
-
-        return {
-            getCollections,
-            getCollection,
-            addCollection,
-            updateCollection,
-            deleteCollection
-        };
     });
