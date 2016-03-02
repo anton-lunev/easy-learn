@@ -1,26 +1,13 @@
 angular.module('list')
-    .controller('ListController', function ($scope, $animate, localStorageService, collections, collection, listService,
-                                            dbService, $timeout, googleTranslateService) {
+    .controller('ListController', function ($scope, $animate, $timeout, localStorageService, collection,
+                                            timerService, dbService, googleTranslateService, notificationService) {
         let ctrl = this;
 
         ctrl.collection = collection;
-
-        ctrl.timer = listService.timer;
-        ctrl.timer.time = localStorageService.get('time') || 1;
+        ctrl.timer = timerService.timer;
         ctrl.word = {
             eng: null,
             translate: null
-        };
-
-        ctrl.toggleTimer = listService.toggleTimer;
-        ctrl.getTranslation = function (word) {
-            if (!word) {
-                return;
-            }
-
-            googleTranslateService.getTranslation(word).then((translation) => {
-                ctrl.word.translate = translation;
-            });
         };
 
         $scope.$watch('list.collection.list', (val, oldVal) => {
@@ -29,18 +16,28 @@ angular.module('list')
             }
         }, true);
 
-        $scope.$watch('list.timer.time', () => {
-            localStorageService.set('time', ctrl.timer.time);
+        $scope.$watch('list.timer.time', time => {
+            timerService.updateTime(time);
         });
+
+        ctrl.toggleTimer = timerService.toggleTimer;
+
+        ctrl.getTranslation = function (word) {
+            if (!word) {
+                return;
+            }
+
+            googleTranslateService.getTranslation(word).then(translation => {
+                ctrl.word.translate = translation;
+            });
+        };
 
         ctrl.addWord = function (word) {
             ctrl.collection.list.unshift(word);
-            new Notification('New word', {
-                body: word.eng + ' - ' + word.translate
-            });
-            
+
+            notificationService.push('New word', `${word.eng} - ${word.translate}`);
             googleTranslateService.playAudio(word.eng, 1000);
-            ctrl.word = '';
+            ctrl.word = {};
         };
 
         ctrl.removeWord = function (index) {

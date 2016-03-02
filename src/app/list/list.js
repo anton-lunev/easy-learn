@@ -1,1 +1,1 @@
-angular.module('list', ['googleTranslate']);
+angular.module('list', ['googleTranslate', 'timer', 'notification']);

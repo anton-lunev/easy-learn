@@ -9,7 +9,7 @@
         <h2 ng-bind="list.collection.name"></h2>
         <!--<h4 ng-bind="collection.description"></h4>-->
 
-        <form role="form" ng-submit="list.addWord(list.word)">
+        <form name="list.form" ng-submit="list.addWord(list.word)">
             <input type="text" ng-model="list.word.eng" placeholder="New word" class="form-control" required>
             <input type="text" ng-model="list.word.translate" placeholder="translate" class="form-control"
                    ng-focus="list.getTranslation(list.word.eng)" required>
