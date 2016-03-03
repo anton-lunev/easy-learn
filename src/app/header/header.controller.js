@@ -1,14 +1,15 @@
 angular.module('header')
     .controller('HeaderController', function ($scope) {
+        let ctrl = this;
         let ipc = require("electron").ipcRenderer;
-        
-        $scope.close = function () {
+
+        ctrl.close = function () {
             ipc.send('close-main-window');
         };
-        $scope.minimize = function () {
+        ctrl.minimize = function () {
             ipc.send('minimize-main-window');
         };
-        $scope.fullScreen = function () {
+        ctrl.fullScreen = function () {
             ipc.send('maximize-main-window');
         };
     });

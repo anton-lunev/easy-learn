@@ -12,7 +12,8 @@ angular.module('easy-learn')
                     },
                     "header": {
                         templateUrl: 'app/header/header.tpl.html',
-                        controller: 'HeaderController'
+                        controller: 'HeaderController',
+                        controllerAs: 'header'
                     },
                     "content": {
                         templateUrl: 'app/app.tpl.html'

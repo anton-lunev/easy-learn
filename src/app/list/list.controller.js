@@ -1,6 +1,6 @@
 angular.module('list')
-    .controller('ListController', function ($scope, $animate, $timeout, localStorageService, collection,
-                                            timerService, dbService, googleTranslateService, notificationService) {
+    .controller('ListController', function ($scope, $animate, $timeout, collection, timerService,
+                                            dbService, googleTranslateService, notificationService) {
         let ctrl = this;
 
         ctrl.collection = collection;
