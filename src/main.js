@@ -13,7 +13,7 @@ function onClosed() {
 }
 
 function createMainWindow() {
-    const win = new BrowserWindow({
+    let win = new BrowserWindow({
         'frame': false,
         'height': 395,
         'width': 650,

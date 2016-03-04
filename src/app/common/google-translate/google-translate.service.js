@@ -11,6 +11,11 @@ angular.module('googleTranslate', [])
             getTranslation
         };
 
+        /**
+         * Play audio with word
+         * @param {string} word
+         * @param {int} timeout
+         */
         function playAudio(word, timeout = 0) {
             let audio = new Audio(`${googleTranslateConfig.domain}/translate_tts?client=gtx&tl=en&q=${decodeURI(word)}`);
             $timeout(() => {
@@ -18,6 +23,11 @@ angular.module('googleTranslate', [])
             }, timeout);
         }
 
+        /**
+         * Returned translation by query
+         * @param {string} query
+         * @returns {*|Promise.<TResult>}
+         */
         function getTranslation(query) {
             let promise = $http({
                 method: 'GET',
@@ -30,7 +40,7 @@ angular.module('googleTranslate', [])
                     dt: 't',
                     q: query
                 },
-                transformResponse: function (res) {
+                transformResponse: res => {
                     try {
                         return JSON.parse(res.replace(/,(?=,)/g, ',null'));
                     } catch (e) {
@@ -39,7 +49,7 @@ angular.module('googleTranslate', [])
                 }
             });
 
-            return promise.then((res) => {
+            return promise.then(res => {
                 console.log(res);
                 let result = null;
                 try {

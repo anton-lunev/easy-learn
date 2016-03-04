@@ -4,8 +4,13 @@ angular.module('notification', [])
             push
         };
 
+        /**
+         * Show push notification
+         * @param {string} title
+         * @param {string} body
+         */
         function push(title, body) {
-            new Notification(title, {body: body});
+            return new Notification(title, {body: body});
         }
     });
 

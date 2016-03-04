@@ -11,10 +11,20 @@ angular.module('timer', [])
             timer
         };
 
+        /**
+         * Returned random value 
+         * @param {int} min
+         * @param {int} max
+         * @returns {*}
+         */
         function getRandomInt(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
 
+        /**
+         * Started/stopped timer
+         * @param {object} list
+         */
         function toggleTimer(list) {
             if (timer.timerId) {
                 clearTimeout(timer.timerId);
@@ -31,7 +41,12 @@ angular.module('timer', [])
                 }, 0);
             }
         }
-        
+
+        /**
+         * Updated time in local storage
+         * @param {int} time
+         * @returns {number}
+         */
         function updateTime(time) {
             if (!time) {
                 return timer.time = 1;
