@@ -6,6 +6,15 @@
     font-style: normal;
 }
 
+@keyframes show {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -22,6 +31,10 @@ html, body {
     font-size: 14px;
     line-height: 1.42857143;
     color: #3f5167;
+    opacity: 0;
+
+    animation: show .5s .3s ease-in-out 1;
+    animation-fill-mode: forwards;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -49,47 +62,111 @@ input[type="text"], input[type="number"] {
     }
 }
 
-.btn .icon {
-    font-size: 9px;
-    margin-right: 0.4rem;
+.icon {
+    font-weight: 500;
+    &:before {
+        font-family: "kitematic";
+        font-style: normal !important;
+        font-weight: normal !important;
+        font-variant: normal !important;
+        text-transform: none !important;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+    }
+}
+.icon {
+    &--delete:before {
+        content: "j";
+    }
+
+    &--add:before {
+        content: "a";
+    }
+
 }
 
-.icon-add:before {
-    content: "a";
+//TODO refactor buttons
+.btn {
+    background-color: transparent;
+    color: #556473;
+    border: 1px solid #556473;
+    box-shadow: none;
+    text-shadow: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &--circle {
+        border-radius: 50%;
+        width: 22px;
+        height: 22px;
+        padding: 2px;
+    }
+
+    &--add {
+        transition: all 150ms;
+        background: transparent;
+        border: 1px solid #15cc35;
+        color: #15cc35;
+
+        &:hover {
+            border-color: darken(#15cc35, 10%);
+            color: darken(#15cc35, 10%);
+        }
+        &:before {
+            font-size: 10px;
+            content: 'a';
+        }
+    }
+
+    &--remove {
+        transition: all 150ms;
+        background: transparent;
+        border: 1px solid #22b8eb;
+        color: #22b8eb;
+        &:hover {
+            border-color: darken(#22b8eb, 10%);
+            color: darken(#22b8eb, 10%);
+        }
+
+        &:before {
+            font-size: 10px;
+            content: 'j';
+        }
+    }
+
+    &--circular {
+        display: flex;
+        border-radius: 50%;
+        text-align: center;
+        padding: 0;
+    }
+
+    .icon {
+        font-size: 9px;
+        margin-right: 0.4rem;
+    }
 }
 
 .containers {
     box-sizing: border-box;
     height: 100%;
     display: flex;
-    flex-direction: row;
 
     &__sidebar {
-        background-color: white;
-        margin: 0;
-        border-right: 1px solid #e6edf4;
         display: flex;
-        flex-direction: column;
-        min-width: 220px;
+        height: 100%;
+        border-right: 1px solid #e6edf4;
+        min-width: 210px;
         box-sizing: border-box;
         position: relative;
     }
 
-    &__sidebar-content {
-        box-shadow: 1px 0 0 #e6edf4;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        flex: 1 0;
-        display: flex;
-        flex-direction: column;
-    }
-
     &__header {
-        -webkit-app-region: drag;
-        -webkit-user-select: none;
         display: flex;
         border-bottom: 1px solid #e6edf4;
+        -webkit-app-region: drag;
+        -webkit-user-select: none;
     }
     &__content {
         background-color: #f6f8fb;
@@ -106,41 +183,4 @@ input[type="text"], input[type="number"] {
 
 .content {
     text-align: center;
-}
-
-
-/* ************************************** */
-/* Mandatory CSS required for ng-sortable */
-/* ************************************** */
-
-.as-sortable-item, .as-sortable-placeholder {
-    display: block;
-}
-
-.as-sortable-item {
-    touch-action: none;
-}
-
-.as-sortable-item-handle {
-    cursor: move;
-    cursor: -webkit-grab;
-}
-
-.as-sortable-placeholder {
-}
-
-.as-sortable-drag {
-    position: absolute;
-    pointer-events: none;
-    z-index: 9999;
-}
-
-.as-sortable-hidden {
-    display: none !important;
-}
-
-.as-sortable-un-selectable {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    user-select: none;
 }

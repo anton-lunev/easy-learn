@@ -11,9 +11,8 @@ gulp.task('styles', function() {
         .pipe($.concat('app.css'))
         .pipe($.sourcemaps.write())
         .pipe($.autoprefixer({
-            browsers: ['last 2 versions'],
+            browsers: ['last 2 Chrome versions'],
             cascade: false
         }))
-        //.pipe($.csso())
         .pipe(gulp.dest(conf.paths.tmp + '/app'));
 });

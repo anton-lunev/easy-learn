@@ -3,7 +3,6 @@ angular.module('easy-learn', [
     'LocalStorageModule',
     'ui.router',
     'lokijs',
-    'header',
     'sidebar',
     'list',
     'db'

@@ -10,11 +10,6 @@ angular.module('easy-learn')
                         controller: 'SidebarController',
                         controllerAs: 'sidebar'
                     },
-                    "header": {
-                        templateUrl: 'app/header/header.tpl.html',
-                        controller: 'HeaderController',
-                        controllerAs: 'header'
-                    },
                     "content": {
                         templateUrl: 'app/app.tpl.html'
                     }

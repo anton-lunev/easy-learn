@@ -1,36 +1,6 @@
-<div class="sidebar" style="max-height: calc(100vh - 29px)">
-    <section class="sidebar__header">
-        <div class="sidebar-header">
-            <h4 class="sidebar-header__title">Collections</h4>
-            <div class="create sidebar-header__action">
-                <a ng-click="sidebar.addCollection()">
-                    <span class="btn btn-new btn-action has-icon btn-hollow">
-                        <span class="icon icon-add"></span><span>New</span>
-                    </span>
-                </a>
-            </div>
-        </div>
-    </section>
-    <section class="sidebar__collections">
-        <div class="sidebar-containers sidebar-collections">
-            <ul class="sidebar-collections__list">
-                <li ng-repeat="collection in sidebar.collections track by collection.$loki"
-                    ui-sref-active="active" ui-sref="route.list.item({id: collection.$loki})">
-                    <a>
-                        <div class="info">
-                            <div class="name" ng-bind="collection.name"></div>
-                            <div class="image">
-                                <span ng-bind="collection.description">postgres</span>
-                            </div>
-                        </div>
-                        <div class="action">
-                        <span class="btn circular" ng-click="sidebar.removeCollection(collection)">
-                            <span class="icon icon-delete"></span>
-                        </span>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </section>
+<div class="sidebar">
+    <window-controls class="sidebar__window-controls"></window-controls>
+    <sidebar-header class="sidebar__header"></sidebar-header>
+    <sidebar-list class="sidebar__list" collections="sidebar.collections"></sidebar-list>
+    <section class="sidebar__footer"></section>
 </div>

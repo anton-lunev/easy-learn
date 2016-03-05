@@ -3,14 +3,4 @@ angular.module('sidebar')
         let ctrl = this;
         
         ctrl.collections = collections;
-
-        ctrl.addCollection = function () {
-            dbService.addCollection({
-                name: 'New Collection',
-                description: 'description',
-                list: []
-            });
-        };
-
-        ctrl.removeCollection = dbService.deleteCollection;
     });

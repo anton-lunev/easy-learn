@@ -1,0 +1,89 @@
+.collections {
+    margin: 0;
+    padding: 0;
+
+    &__item {
+
+    }
+}
+
+.collection-item {
+    cursor: pointer;
+    position: relative;
+    vertical-align: middle;
+    padding: 6px 10px 7px 21px;
+    display: block;
+    box-sizing: border-box;
+
+    &:hover {
+        background-color: #f8fafc;
+    }
+
+    &--active, &--active:hover {
+        background: #22b8eb;
+    }
+
+    &__info {
+        max-width: 140px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        font-weight: 400;
+
+        &--name {
+            color: #233137;
+            font-size: 13px;
+        }
+        &--description {
+            color: #7a8491;
+            margin-top: -1px;
+            font-size: 11px;
+        }
+    }
+
+    &--active &__info {
+        &--name, &--description {
+            color: #fff;
+        }
+    }
+
+    &__action {
+        position: absolute;
+        right: 15px;
+        top: 10px;
+
+        .btn--collection {
+            width: 26px;
+            height: 26px;
+            box-sizing: border-box;
+            border: 1px solid #c4cdda;
+            opacity: 0;
+            visibility: hidden;
+            display: flex;
+
+            .icon {
+                margin: auto;
+                color: #c4cdda;
+                font-size: 10px;
+                width: 12px;
+                height: 12px;
+            }
+        }
+    }
+
+    &:hover &__action {
+        .btn--collection {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    &--active &__action {
+        .btn--collection {
+            border: 1px solid white;
+            .icon {
+                color: #fff;
+            }
+        }
+    }
+}
