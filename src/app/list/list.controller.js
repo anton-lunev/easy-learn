@@ -1,14 +1,7 @@
 angular.module('list')
-    .controller('ListController', function ($scope, $animate, $timeout, collection, timerService,
-                                            dbService, googleTranslateService, notificationService) {
+    .controller('ListController', function ($scope, $animate, $timeout, collection, timerService, dbService) {
         let ctrl = this;
-
         ctrl.collection = collection;
-        
-        ctrl.word = {
-            eng: null,
-            translate: null
-        };
 
         $scope.$watch('list.collection.list', (val, oldVal) => {
             if (!angular.equals(val, oldVal)) {
@@ -16,25 +9,11 @@ angular.module('list')
             }
         }, true);
 
-        ctrl.getTranslation = function (word) {
-            if (!word) {
-                return;
-            }
-
-            googleTranslateService.getTranslation(word).then(translation => {
-                ctrl.word.translate = translation;
-            });
-        };
-
-        ctrl.addWord = function (word) {
-            ctrl.collection.list.unshift(word);
-
-            notificationService.push('New word', `${word.eng} - ${word.translate}`);
-            googleTranslateService.playAudio(word.eng, 1000);
-            ctrl.word = {};
-        };
-
-        ctrl.removeWord = function (index) {
+        ctrl.removeFromCollection = function (index) {
             ctrl.collection.list.splice(index, 1);
         };
+
+        ctrl.addToCollection = function (word) {
+            ctrl.collection.list.unshift(word);
+        }
     });

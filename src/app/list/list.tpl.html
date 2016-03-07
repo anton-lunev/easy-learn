@@ -2,27 +2,18 @@
     <timer-input class="list-container__timer" collection="list.collection"></timer-input>
 
     <section class="list-container__header">
-        <h2 ng-bind="list.collection.name"></h2>
+        <h2 class="list-container__title" ng-bind="list.collection.name"></h2>
 
-        <form name="list.form" ng-submit="list.addWord(list.word)">
-            <input type="text" ng-model="list.word.eng" placeholder="New word" class="form-control" required>
-            <input type="text" ng-model="list.word.translate" placeholder="translate" class="form-control"
-                   ng-focus="list.getTranslation(list.word.eng)" required>
-            <button type="submit" class="btn btn--circle btn--add icon">
-                <svg class="icon">
-                    <use xlink:href="#plus" />
-                </svg>
-            </button>
-        </form>
+        <list-form add-to-collection="list.addToCollection"></list-form>
     </section>
 
     <section class="list-container__list">
         <div class="list">
             <div class="list__item" ng-repeat="word in list.collection.list track by $index">
                 <div class="list-item">
-                    <input type="text" ng-model="word.eng" class="form-control">
-                    <input type="text" ng-model="word.translate" class="form-control">
-                    <button class="btn btn--circle btn--remove" ng-click="list.removeWord($index)">
+                    <input class="input list-item__input list-item__input--eng" type="text" ng-model="word.eng">
+                    <input class="input list-item__input list-item__input--translation" type="text" ng-model="word.translate">
+                    <button class="list-item__btn btn btn--circle btn--remove" ng-click="list.removeFromCollection($index)">
                         <svg class="icon">
                             <use xlink:href="#close" />
                         </svg>

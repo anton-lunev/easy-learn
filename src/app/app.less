@@ -40,29 +40,18 @@ input, button, select, textarea {
     outline: none;
 }
 
-input[type="text"], input[type="number"] {
+.input {
     border: 0;
     border-bottom: 1px solid #e6edf4;
     color: #556473;
     font-weight: 300;
     padding: 5px;
-    width: 175px;
     transition: all 0.25s;
+
     &:focus {
         outline: 0;
         border-bottom: 1px solid #22b8eb;
     }
-}
-
-.icon {
-    &--delete:before {
-        content: "j";
-    }
-
-    &--add:before {
-        content: "a";
-    }
-
 }
 
 //TODO refactor buttons
@@ -143,7 +132,6 @@ input[type="text"], input[type="number"] {
         box-sizing: border-box;
         position: relative;
     }
-
     &__header {
         display: flex;
         border-bottom: 1px solid #e6edf4;

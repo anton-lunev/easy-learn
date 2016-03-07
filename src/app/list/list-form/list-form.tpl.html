@@ -1,0 +1,10 @@
+<form class="list-form" name="$ctrl.form" ng-submit="$ctrl.addWord($ctrl.word)">
+    <input class="input list-form__input" type="text" ng-model="$ctrl.word.eng" placeholder="New word" required>
+    <input class="input list-form__input" type="text" ng-model="$ctrl.word.translate" placeholder="translate"
+           ng-focus="$ctrl.getTranslation($ctrl.word.eng)" required>
+    <button class="list-form__btn btn btn--circle btn--add" type="submit">
+        <svg class="icon">
+            <use xlink:href="#plus" />
+        </svg>
+    </button>
+</form>
