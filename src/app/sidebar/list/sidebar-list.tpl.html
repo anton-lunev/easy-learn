@@ -7,9 +7,10 @@
         <div class="collection-item__info collection-item__info--description"
              ng-bind="collection.description"></div>
         <div class="collection-item__action">
-            <span class="btn btn--circular btn--collection"
-                  ng-click="$ctrl.removeCollection(collection)">
-                <span class="icon icon--delete"></span>
+            <span class="btn btn--circular btn-collection" ng-click="$ctrl.removeCollection(collection)">
+                <svg class="icon btn-collection__icon">
+                    <use xlink:href="#close" />
+                </svg>
             </span>
         </div>
     </li>

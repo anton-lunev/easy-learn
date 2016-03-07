@@ -1,24 +1,47 @@
-var path = require('path');
-var gulp = require('gulp');
-var conf = require('./conf');
-var es = require('event-stream');
+"use strict";
 
-var $ = require('gulp-load-plugins')();
+let path = require('path');
+let gulp = require('gulp');
+let conf = require('./conf');
+let es = require('event-stream');
+
+let $ = require('gulp-load-plugins')();
 
 gulp.task('inject', function () {
-    var injectVendors = gulp.src([
+    function fileContents(filePath, file) {
+        return file.contents.toString();
+    }
+
+    let config = {
+        shape: {
+            dimension: {			// Set maximum dimensions
+                maxWidth: 32,
+                maxHeight: 32,
+                attributes: true
+            }
+        },
+        mode: {
+            inline: true,     // Prepare for inline embedding
+            symbol: true      // Create a «symbol» sprite
+        }
+    };
+
+    let svg = gulp.src(conf.paths.src + '/svg/*.svg')
+        .pipe($.svgSprite(config));
+
+    let injectVendors = gulp.src([
         path.join(conf.paths.tmp + '/vendors/**/*.js')
     ]);
 
-    var injectStyles = gulp.src([
+    let injectStyles = gulp.src([
         path.join(conf.paths.tmp + '/**/*.css')
     ], {read: false});
 
-    var injectScripts = gulp.src([
+    let injectScripts = gulp.src([
         path.join(conf.paths.tmp + '/app/**/*.js')
     ]);
 
-    var injectOptions = {
+    let injectOptions = {
         addRootSlash: false,
         ignorePath: [conf.paths.src, conf.paths.tmp]
     };
@@ -29,6 +52,7 @@ gulp.task('inject', function () {
             injectVendors.pipe($.angularFilesort()),
             injectStyles
         ), injectOptions))
+        .pipe($.inject(svg, {transform: fileContents}))
         .pipe(gulp.dest(conf.paths.tmp))
         .pipe($.size());
 });

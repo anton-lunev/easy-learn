@@ -1,11 +1,11 @@
 'use strict';
 
-var gulp = require('gulp');
-var path = require('path');
-var del = require('del');
-var conf = require('./conf');
-var $ = require('gulp-load-plugins')();
-var runSequence = require('run-sequence');
+let gulp = require('gulp');
+let path = require('path');
+let del = require('del');
+let conf = require('./conf');
+let $ = require('gulp-load-plugins')();
+let runSequence = require('run-sequence');
 
 gulp.task('build', function(done) {
     runSequence(['copy', 'styles', 'scripts:main', 'scripts:vendor', 'scripts', 'templates'],'inject', done);

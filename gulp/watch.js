@@ -1,10 +1,10 @@
 'use strict';
 
-var path = require('path');
-var gulp = require('gulp');
-var conf = require('./conf');
+let path = require('path');
+let gulp = require('gulp');
+let conf = require('./conf');
 
-var browserSync = require('browser-sync');
+let browserSync = require('browser-sync');
 
 gulp.task('watch', ['build'], function () {
     gulp.watch(conf.paths.src + '/app/**/*.js', ['scripts']);

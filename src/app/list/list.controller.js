@@ -4,7 +4,7 @@ angular.module('list')
         let ctrl = this;
 
         ctrl.collection = collection;
-        ctrl.timer = timerService.timer;
+        
         ctrl.word = {
             eng: null,
             translate: null
@@ -15,12 +15,6 @@ angular.module('list')
                 dbService.updateCollection(ctrl.collection);
             }
         }, true);
-
-        $scope.$watch('list.timer.time', time => {
-            timerService.updateTime(time);
-        });
-
-        ctrl.toggleTimer = timerService.toggleTimer;
 
         ctrl.getTranslation = function (word) {
             if (!word) {

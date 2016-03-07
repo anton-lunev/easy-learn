@@ -52,7 +52,7 @@
         right: 15px;
         top: 10px;
 
-        .btn--collection {
+        .btn-collection {
             width: 26px;
             height: 26px;
             box-sizing: border-box;
@@ -60,29 +60,34 @@
             opacity: 0;
             visibility: hidden;
             display: flex;
+            transition: transform .2s;
 
-            .icon {
+            &:hover {
+                transform: scale(1.08);
+            }
+
+            &__icon {
                 margin: auto;
-                color: #c4cdda;
-                font-size: 10px;
-                width: 12px;
-                height: 12px;
+                width: 24px;
+                height: 24px;
+                fill: #c4cdda;
+                display: block;
             }
         }
     }
 
     &:hover &__action {
-        .btn--collection {
+        .btn-collection {
             opacity: 1;
             visibility: visible;
         }
     }
 
     &--active &__action {
-        .btn--collection {
+        .btn-collection {
             border: 1px solid white;
-            .icon {
-                color: #fff;
+            &__icon {
+                fill: #fff;
             }
         }
     }
