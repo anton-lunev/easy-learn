@@ -1,4 +1,4 @@
-angular.module('sidebar')
+angular.module('list')
     .component('timerInput', {
         templateUrl: 'app/list/timer-input/timer-input.tpl.html',
         bindings: {

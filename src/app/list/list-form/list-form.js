@@ -1,4 +1,4 @@
-angular.module('sidebar')
+angular.module('list')
     .component('listForm', {
         templateUrl: 'app/list/list-form/list-form.tpl.html',
         bindings: {
