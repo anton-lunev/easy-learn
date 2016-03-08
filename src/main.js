@@ -16,8 +16,8 @@ function createMainWindow() {
     let win = new BrowserWindow({
         'frame': false,
         'height': 395,
-        'width': 650,
-        'min-width': 650,
+        'width': 680,
+        'min-width': 680,
         'min-height': 395
     });
 
