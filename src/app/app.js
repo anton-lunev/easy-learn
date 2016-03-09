@@ -10,7 +10,6 @@ angular.module('easy-learn', [
 
 //TODO make inputs wider
 //TODO make auto translate (by google and yandex)
-//TODO add sound
 //TODO add statistics of showed words
 //TODO improve performance of long list
 //TODO add edit of collections name and description

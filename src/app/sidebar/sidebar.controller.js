@@ -1,6 +1,7 @@
-angular.module('sidebar')
-    .controller('SidebarController', function ($scope, collections, localStorageService, dbService) {
-        let ctrl = this;
-        
-        ctrl.collections = collections;
-    });
+class SidebarController {
+    constructor(collections) {
+        this.collections = collections;
+    }
+}
+
+angular.module('sidebar').controller('SidebarController', SidebarController);

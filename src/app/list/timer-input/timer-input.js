@@ -1,14 +1,16 @@
+class TimerInputController {
+    constructor($scope, timerService) {
+        this.timerService = timerService;
+
+        $scope.$watch('$ctrl.timer.time', this.timerService.updateTime);
+    }
+}
+
 angular.module('list')
     .component('timerInput', {
         templateUrl: 'app/list/timer-input/timer-input.tpl.html',
         bindings: {
             collection: '<'
         },
-        controller: function ($scope, timerService) {
-            let ctrl = this;
-            ctrl.timer = timerService.timer;
-            ctrl.toggleTimer = timerService.toggleTimer;
-
-            $scope.$watch('$ctrl.timer.time', timerService.updateTime);
-        }
+        controller: TimerInputController
     });

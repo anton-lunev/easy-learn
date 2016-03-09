@@ -1,9 +1,9 @@
 angular.module('list')
-    .config(function ($stateProvider) {
+    .config($stateProvider => {
         $stateProvider.state('route.list.item', {
             url: 'list/{id}',
             views: {
-                "details@route": {
+                'details@route': {
                     templateUrl: 'app/list/list.tpl.html',
                     controller: 'ListController',
                     controllerAs: 'list'

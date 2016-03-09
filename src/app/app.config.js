@@ -1,5 +1,5 @@
 angular.module('easy-learn')
-    .config(function (localStorageServiceProvider, $urlRouterProvider) {
+    .config((localStorageServiceProvider, $urlRouterProvider) => {
         localStorageServiceProvider.setPrefix('el');
 
         $urlRouterProvider.otherwise('/');

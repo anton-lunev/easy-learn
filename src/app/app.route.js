@@ -1,16 +1,16 @@
 angular.module('easy-learn')
-    .config(function ($stateProvider) {
+    .config($stateProvider => {
         $stateProvider
             .state('route', {
                 url: '',
                 abstract: true,
                 views: {
-                    "sidebar": {
+                    'sidebar': {
                         templateUrl: 'app/sidebar/sidebar.tpl.html',
                         controller: 'SidebarController',
                         controllerAs: 'sidebar'
                     },
-                    "content": {
+                    'content': {
                         templateUrl: 'app/app.tpl.html'
                     }
                 },
@@ -24,7 +24,7 @@ angular.module('easy-learn')
             .state('route.list', {
                 url: '/',
                 views: {
-                    "details": {
+                    'details': {
                         templateUrl: 'app/welcome/welcome.tpl.html'
                     }
                 }
