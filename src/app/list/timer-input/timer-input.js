@@ -2,7 +2,7 @@ class TimerInputController {
     constructor($scope, timerService) {
         this.timerService = timerService;
 
-        $scope.$watch('$ctrl.timer.time', this.timerService.updateTime);
+        $scope.$watch('$ctrl.timerService.timer.time', this.timerService.updateTime);
     }
 }
 
