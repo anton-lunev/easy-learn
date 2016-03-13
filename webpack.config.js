@@ -5,15 +5,18 @@ const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const DIR = {
     src: path.join(__dirname, 'src'),
-    dist: path.join(__dirname, 'dist')
+    dist: path.join(__dirname, 'dist1')
 };
 
 module.exports = {
 
-    entry: DIR.src + '/app',
+    entry: {
+        'main': DIR.src + '/app'
+    },
 
     output: {
         path: DIR.dist,
@@ -22,11 +25,11 @@ module.exports = {
     },
 
     resolve: {
-        modulesDirectories: ['node_modules', 'bower_components'],
+        modulesDirectories: ['node_modules'],
         alias: {
-            compat: path.join(DIR.src, 'compat'),
-            components: path.join(DIR.src, 'components'),
-            services: path.join(DIR.src, 'services')
+            // compat: path.join(DIR.src, 'compat'),
+        //     components: path.join(DIR.src, 'components'),
+        //     services: path.join(DIR.src, 'services')
         }
     },
 
@@ -37,28 +40,30 @@ module.exports = {
         }),
 
         new HtmlWebpackPlugin({
-            template: 'src/index.html'
+            template: 'src/index.html',
+            inject: 'body'
         }),
 
         new webpack.HotModuleReplacementPlugin(),
-
-        new webpack.ResolverPlugin([
-            new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
-        ]),
-
         new webpack.optimize.CommonsChunkPlugin({
             name: 'main',
             async: true
-        })
+        }),
+
+        new CopyWebpackPlugin([
+            { from: DIR.src + '/images', to: 'images'},
+            { from: DIR.src + '/main.js'},
+            { from: DIR.src + '/package.json'}
+        ])
     ],
 
     module: {
         preLoaders: [
-            {
-                // test: /\.js$/,
-                // loader: 'eslint',
-                // exclude: /node_modules|bower_components/
-            }
+            // {
+            // test: /\.js$/,
+            // loader: 'eslint',
+            // exclude: /node_modules|bower_components/
+            // }
         ],
         loaders: [
             {
@@ -67,7 +72,7 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                loader: 'babel',
+                loader: 'ng-annotate!babel',
                 exclude: /node_modules|bower_components/
             },
             {
@@ -75,11 +80,22 @@ module.exports = {
                 loader: 'html'
             },
             {
+                test: /\.less$/,
+                loader: "style!css!less"
+            },
+            {
                 test: /\.css$/,
                 loader: 'style!css'
             },
             {
-                test: /(\.eot|\.ttf|\.woff2?|\.svg)$/,
+                test: /\.svg$/,
+                loader: 'svg-sprite?' + JSON.stringify({
+                    name: '[name]',
+                    angularBaseWorkaround: true
+                })
+            },
+            {
+                test: /(\.eot|\.ttf|\.woff2?)$/,
                 loader: 'url'
             }
         ]

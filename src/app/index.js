@@ -1,3 +1,8 @@
+import './app.less';
+import '../svg/close.svg';
+
+import angular from 'angular';
+
 angular.module('easy-learn', [
     'ngAnimate', 
     'LocalStorageModule',
