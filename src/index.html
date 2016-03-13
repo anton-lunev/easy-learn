@@ -8,27 +8,12 @@
             background: url('images/spinner.svg') center no-repeat;
         }
     </style>
-
-    <!-- build:css({.tmp,src}) styles/app.css -->
-    <!-- inject:css -->
-    <!-- css files will be automatically insert here -->
-    <!-- endinject -->
-    <!-- endbuild -->
-
-    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
-    <!-- inject:js -->
-    <!-- js files will be automatically insert here -->
-    <!-- endinject -->
 </head>
 <body ng-app="easy-learn">
 
 <div class="containers">
     <div class="containers__sidebar" ui-view="sidebar"></div>
     <div class="containers__content" ui-view="content"></div>
-</div>
-
-<div style="height: 0; width: 0; position: absolute; visibility: hidden">
-    <!-- inject:svg --><!-- endinject -->
 </div>
 
 </body>

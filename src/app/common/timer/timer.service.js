@@ -1,5 +1,10 @@
-angular.module('timer', [])
+'use strict';
+import angular from 'angular';
+
+export default angular.module('timer', [])
     .factory('timerService', function (googleTranslateService, localStorageService, notificationService) {
+        'ngInject';
+        
         let timer = {
             time: localStorageService.get('time') || 1,
             timerId: undefined
@@ -12,7 +17,7 @@ angular.module('timer', [])
         };
 
         /**
-         * Returned random value 
+         * Returned random value
          * @param {int} min
          * @param {int} max
          * @returns {*}

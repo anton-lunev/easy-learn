@@ -1,6 +1,8 @@
-angular.module('easy-learn')
-    .config((localStorageServiceProvider, $urlRouterProvider) => {
-        localStorageServiceProvider.setPrefix('el');
+'use strict';
 
-        $urlRouterProvider.otherwise('/');
-    });
+export default (localStorageServiceProvider, $urlRouterProvider) => {
+    'ngInject';
+    
+    localStorageServiceProvider.setPrefix('el');
+    $urlRouterProvider.otherwise('/');
+}

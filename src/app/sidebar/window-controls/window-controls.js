@@ -1,23 +1,9 @@
-class WindowControlsController {
-    constructor() {
-        this.ipc = require('electron').ipcRenderer;
-    }
+'use strict';
 
-    close() {
-        this.ipc.send('close-main-window');
-    }
+import './window-controls.less';
+import angular from 'angular';
 
-    minimize() {
-        this.ipc.send('minimize-main-window');
-    }
+import windowControls from './window-controls.component';
 
-    fullScreen() {
-        this.ipc.send('maximize-main-window');
-    }
-}
-
-angular.module('sidebar')
-    .component('windowControls', {
-        templateUrl: 'app/sidebar/window-controls/window-controls.tpl.html',
-        controller: WindowControlsController
-    });
+export default angular.module('sidebar.windowControls', [])
+    .component('windowControls', windowControls);

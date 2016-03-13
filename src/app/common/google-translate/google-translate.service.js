@@ -1,4 +1,7 @@
-angular.module('googleTranslate', [])
+'use strict';
+import angular from 'angular';
+
+export default angular.module('googleTranslate', [])
     .constant('googleTranslateConfig', {
         domain: 'https://translate.googleapis.com',
         source: 'en',
@@ -6,6 +9,8 @@ angular.module('googleTranslate', [])
     })
 
     .factory('googleTranslateService', function ($http, $timeout, googleTranslateConfig) {
+        'ngInject';
+        
         return {
             playAudio,
             getTranslation

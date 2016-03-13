@@ -1,5 +1,7 @@
-angular.module('list')
-    .factory('listService', function (googleTranslateService) {
-        
-    });
+'use strict';
+
+export default googleTranslateService => {
+    'ngInject';
+
+}
 

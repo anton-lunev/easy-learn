@@ -1,16 +1,13 @@
-class TimerInputController {
-    constructor($scope, timerService) {
-        this.timerService = timerService;
+'use strict';
 
-        $scope.$watch('$ctrl.timerService.timer.time', this.timerService.updateTime);
-    }
-}
+import './timer-input.less'
+import angular from 'angular';
+import timer from 'common/timer/timer.service';
+import timerInput from './timer-input.component';
 
-angular.module('list')
-    .component('timerInput', {
-        templateUrl: 'app/list/timer-input/timer-input.tpl.html',
-        bindings: {
-            collection: '<'
-        },
-        controller: TimerInputController
-    });
+const deps = [
+    timer.name
+];
+
+export default angular.module('list.timer-input', deps)
+    .component('timerInput', timerInput);

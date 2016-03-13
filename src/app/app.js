@@ -1,17 +1,31 @@
 import './app.less';
-import '../svg/close.svg';
+import 'images/app-icon.svg';
 
 import angular from 'angular';
+// import ngAnimate from 'angular-animate';
+import LocalStorageModule from 'angular-local-storage';
+import uiRouter from 'angular-ui-router';
 
-angular.module('easy-learn', [
-    'ngAnimate', 
-    'LocalStorageModule',
-    'ui.router',
-    'lokijs',
-    'sidebar',
-    'list',
-    'db'
-]);
+import db from './common/db/db.service';
+import route from './app.route';
+import config from './app.config';
+import sidebar from './sidebar/sidebar';
+import list from './list/list';
+
+const deps = [
+    // ngAnimate,
+    LocalStorageModule,
+    uiRouter,
+    sidebar.name,
+    list.name,
+    db.name
+];
+
+angular.module('easy-learn', deps)
+    .config(route)
+    .config(config);
+
+
 
 //TODO make inputs wider
 //TODO make auto translate (by google and yandex)

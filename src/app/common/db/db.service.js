@@ -1,5 +1,15 @@
-angular.module('db', [])
+import angular from 'angular';
+import LokiIndexedAdapter from 'lokijs/src/loki-indexed-adapter';
+import lokijs from 'lokijs/src/loki-angular';
+
+const deps = [
+    lokijs.name
+];
+
+export default angular.module('db', deps)
     .factory('dbService', function CollectionService($q, Loki) {
+        'ngInject';
+        
         let _db;
         let _collections;
         initDB();

@@ -1,7 +1,11 @@
+'use strict';
+
 class SidebarController {
     constructor(collections) {
+        'ngInject';
+        
         this.collections = collections;
     }
 }
 
-angular.module('sidebar').controller('SidebarController', SidebarController);
+export default SidebarController;

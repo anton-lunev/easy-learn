@@ -1,4 +1,7 @@
-angular.module('notification', [])
+'use strict';
+import angular from 'angular';
+
+export default angular.module('notification', [])
     .factory('notificationService', function () {
         return {
             push

@@ -1,38 +1,15 @@
-class ListFormController {
-    constructor(googleTranslateService, notificationService) {
-        this.googleTranslateService = googleTranslateService;
-        this.notificationService = notificationService;
+'use strict';
 
-        this.word = {
-            eng: null,
-            translate: null
-        };
-    }
+import './list-form.less';
+import angular from 'angular';
+import listForm from './list-form.component';
+import googleTranslate from 'common/google-translate/google-translate.service';
+import notification from 'common/notification/notification.service';
 
-    getTranslation(word) {
-        if (!word) {
-            return;
-        }
+const deps = [
+    googleTranslate.name,
+    notification.name
+];
 
-        this.googleTranslateService.getTranslation(word).then(translation => {
-            this.word.translate = translation;
-        });
-    }
-
-    addWord(word) {
-        this.addToCollection(word);
-
-        this.notificationService.push('New word', `${word.eng} - ${word.translate}`);
-        this.googleTranslateService.playAudio(word.eng, 1000);
-        this.word = {};
-    }
-}
-
-angular.module('list')
-    .component('listForm', {
-        templateUrl: 'app/list/list-form/list-form.tpl.html',
-        bindings: {
-            addToCollection: '<'
-        },
-        controller: ListFormController
-    });
+export default angular.module('list.list-form', deps)
+    .component('listForm', listForm);

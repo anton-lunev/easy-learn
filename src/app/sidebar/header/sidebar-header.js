@@ -1,19 +1,12 @@
-class SidebarHeaderController {
-    constructor(dbService) {
-        this.dbService = dbService;
-    }
+'use strict';
 
-    addCollection() {
-        this.dbService.addCollection({
-            name: 'New Collection',
-            description: 'description',
-            list: []
-        });
-    }
-}
+import 'svg/plus.svg'
+import './sidebar-header.less';
 
-angular.module('sidebar')
-    .component('sidebarHeader', {
-        templateUrl: 'app/sidebar/header/sidebar-header.tpl.html',
-        controller: SidebarHeaderController
-    });
+import angular from 'angular';
+import sidebarHeader from './sidebar-header.component';
+
+const deps = [];
+
+export default angular.module('sidebar.header', deps)
+    .component('sidebarHeader', sidebarHeader);

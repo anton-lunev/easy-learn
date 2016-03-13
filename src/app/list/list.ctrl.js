@@ -1,5 +1,9 @@
+'use strict';
+
 class ListController {
     constructor($scope, collection, dbService) {
+        'ngInject';
+        
         this.collection = collection;
 
         $scope.$watch('list.collection.list', (val, oldVal) => {
@@ -19,4 +23,4 @@ class ListController {
     }
 }
 
-angular.module('list').controller('ListController', ListController);
+export default ListController;
