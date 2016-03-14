@@ -6,7 +6,8 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const NgAnnotatePlugin = require('ng-annotate-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const WebpackDevServer = require('webpack-dev-server');
 
 let ENV = process.env.npm_lifecycle_event;
 let isProd = ENV === 'buildProd';
@@ -49,6 +50,8 @@ let config = {
             root: __dirname,
             verbose: true
         }),
+
+        new ExtractTextPlugin("[name].css"),
 
         new HtmlWebpackPlugin({
             template: 'src/index.html',
@@ -97,7 +100,7 @@ let config = {
             },
             {
                 test: /\.(less|css)$/,
-                loader: "style!css?root=~images!less"
+                loader: ExtractTextPlugin.extract("style-loader", "css?root=~images&sourceMap!less?sourceMap")
             },
             {
                 test: /\.svg$/,
@@ -119,10 +122,6 @@ if (isProd) {
 
         // Dedupe modules in the output
         new webpack.optimize.DedupePlugin(),
-
-        // new NgAnnotatePlugin({
-        //     add: true
-        // }),
 
         // Minify all javascript, switch loaders to minimizing mode
         new webpack.optimize.UglifyJsPlugin()

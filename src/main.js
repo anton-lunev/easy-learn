@@ -21,7 +21,11 @@ function createMainWindow() {
         'min-height': 395
     });
 
-    win.loadURL('file://' + __dirname + '/index.html');
+    if (process.env['NODE_ENV'] !== 'dev') {
+        win.loadURL('file://' + __dirname + '/index.html');
+    } else {
+        win.loadURL('http://localhost:8080/');
+    }
 
     win.on('closed', onClosed);
     return win;
