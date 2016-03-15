@@ -152,6 +152,18 @@ input, button, select, textarea {
     height: 100%;
     display: flex;
 
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        height: 27px;
+        left: 0;
+        right: 0;
+        top: 0;
+        -webkit-app-region: drag;
+        -webkit-user-select: none;
+    }
+
     &__sidebar {
         display: flex;
         height: 100%;

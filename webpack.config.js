@@ -7,7 +7,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const WebpackDevServer = require('webpack-dev-server');
+const NgAnnotatePlugin = require('ng-annotate-webpack-plugin');
 
 let ENV = process.env.npm_lifecycle_event;
 let isProd = ENV === 'buildProd';
@@ -86,8 +86,8 @@ let config = {
         ],
         loaders: [
             {
-                test: /\.(png)$/,
-                loader: 'url-loader?limit=100000'
+                test: /\.png$/,
+                loader: 'url'
             },
             {
                 test: /\.js$/,
@@ -124,7 +124,12 @@ if (isProd) {
         new webpack.optimize.DedupePlugin(),
 
         // Minify all javascript, switch loaders to minimizing mode
-        new webpack.optimize.UglifyJsPlugin()
+        new webpack.optimize.UglifyJsPlugin(),
+
+        //TODO fix it
+        new NgAnnotatePlugin({
+            add: true
+        })
     )
 }
 
