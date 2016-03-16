@@ -3,7 +3,7 @@
 class ListController {
     constructor($scope, collection, dbService) {
         'ngInject';
-        
+
         this.collection = collection;
 
         $scope.$watch('list.collection.list', (val, oldVal) => {
@@ -11,12 +11,11 @@ class ListController {
                 dbService.updateCollection(this.collection);
             }
         }, true);
-
-        //TODO investigate how to keep context in class method
-        this.addToCollection = (word) => {
-            this.collection.list.unshift(word);
-        }
     }
+
+    addToCollection = (word) => {
+        this.collection.list.unshift(word);
+    };
 
     removeFromCollection(index) {
         this.collection.list.splice(index, 1);

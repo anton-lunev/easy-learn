@@ -7,7 +7,6 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const NgAnnotatePlugin = require('ng-annotate-webpack-plugin');
 
 let ENV = process.env.npm_lifecycle_event;
 let isProd = ENV === 'buildProd';
@@ -91,7 +90,7 @@ let config = {
             },
             {
                 test: /\.js$/,
-                loader: 'ng-annotate!babel',
+                loader: `${isProd ? 'ng-annotate!' : ''}babel`,
                 exclude: /node_modules/
             },
             {
@@ -124,12 +123,7 @@ if (isProd) {
         new webpack.optimize.DedupePlugin(),
 
         // Minify all javascript, switch loaders to minimizing mode
-        new webpack.optimize.UglifyJsPlugin(),
-
-        //TODO fix it
-        new NgAnnotatePlugin({
-            add: true
-        })
+        new webpack.optimize.UglifyJsPlugin()
     )
 }
 
