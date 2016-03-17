@@ -1,19 +1,19 @@
 'use strict';
 
-var app = require('app');
-var BrowserWindow = require('browser-window');
-var ipc = require("electron").ipcMain;
-var Menu = require("menu");
+const app = require('app');
+const BrowserWindow = require('browser-window');
+const ipc = require('electron').ipcMain;
+const Menu = require('menu');
 
 // prevent window being garbage collected
 let mainWindow;
 
-function onClosed() {
-    mainWindow = null;
-}
-
+/**
+ * Create application main window
+ * @returns {object} window
+ */
 function createMainWindow() {
-    let win = new BrowserWindow({
+    const win = new BrowserWindow({
         'frame': false,
         'height': 395,
         'width': 680,
@@ -22,39 +22,46 @@ function createMainWindow() {
     });
 
     if (process.env['NODE_ENV'] !== 'dev') {
-        win.loadURL('file://' + __dirname + '/index.html');
+        win.loadURL(`file://${__dirname}/index.html`);
     } else {
         win.loadURL('http://localhost:8080/');
     }
 
-    win.on('closed', onClosed);
+    win.on('closed', () => {
+        mainWindow = null;
+    });
     return win;
 }
 
+/**
+ * Set application menu in production mode
+ */
 function setApplicationMenu() {
-    let template = [
+    const template = [
         {
-            label: "Application",
+            label: 'Application',
             submenu: [
-                {label: "About Application", selector: "orderFrontStandardAboutPanel:"},
-                {type: "separator"},
+                {label: 'About Application', selector: 'orderFrontStandardAboutPanel:'},
+                {type: 'separator'},
                 {
-                    label: "Quit", accelerator: "Command+Q", click: function () {
-                    app.quit();
-                }
+                    label: 'Quit',
+                    accelerator: 'Command+Q',
+                    click() {
+                        app.quit();
+                    }
                 }
             ]
         },
         {
-            label: "Edit",
+            label: 'Edit',
             submenu: [
-                {label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:"},
-                {label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:"},
-                {type: "separator"},
-                {label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:"},
-                {label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:"},
-                {label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:"},
-                {label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:"}
+                {label: 'Undo', accelerator: 'CmdOrCtrl+Z', selector: 'undo:'},
+                {label: 'Redo', accelerator: 'Shift+CmdOrCtrl+Z', selector: 'redo:'},
+                {type: 'separator'},
+                {label: 'Cut', accelerator: 'CmdOrCtrl+X', selector: 'cut:'},
+                {label: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:'},
+                {label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:'},
+                {label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:'}
             ]
         }
     ];
@@ -80,8 +87,7 @@ app.on('activate', () => {
 
 app.on('ready', () => {
     mainWindow = createMainWindow();
-    console.log(process.env['NODE_ENV']);
-    if (process.env['NODE_ENV'] != 'dev') {
+    if (process.env['NODE_ENV'] !== 'dev') {
         setApplicationMenu();
     }
 });

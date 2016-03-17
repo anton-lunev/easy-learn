@@ -6,17 +6,17 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-let ENV = process.env.npm_lifecycle_event;
-let isProd = ENV === 'buildProd';
+const ENV = process.env.NODE_ENV || 'dev';
+const isProd = ENV === 'production';
 
 const DIR = {
     src: path.join(__dirname, 'src'),
     dist: path.join(__dirname, 'dist')
 };
 
-let config = {
+const config = {
 
     entry: {
         'main': './src/app/app.js'
@@ -25,7 +25,7 @@ let config = {
     output: {
         path: './dist',
         filename: '[name].bundle.js',
-        chunkFilename: "[id].chunk.js"
+        chunkFilename: '[id].chunk.js'
     },
 
     target: 'electron',
@@ -38,7 +38,7 @@ let config = {
             compat: path.join(DIR.src, 'compat'),
             images: path.join(DIR.src, 'images'),
             svg: path.join(DIR.src, 'svg'),
-            common: path.join(DIR.src + '/app', 'common')
+            common: path.join(DIR.src, 'app', 'common')
             // components: path.join(DIR.src, 'components'),
             // services: path.join(DIR.src, 'services')
         }
@@ -50,7 +50,7 @@ let config = {
             verbose: true
         }),
 
-        new ExtractTextPlugin("[name].css"),
+        new ExtractTextPlugin('[name].css'),
 
         new HtmlWebpackPlugin({
             template: 'src/index.html',
@@ -59,19 +59,19 @@ let config = {
 
         new webpack.HotModuleReplacementPlugin(),
 
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'main',
-            async: true
-        }),
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name: 'main',
+        //     async: true
+        // }),
 
         new webpack.ProvidePlugin({
-            loki: "lokijs"
+            loki: 'lokijs'
         }),
 
         new CopyWebpackPlugin([
-            {from: DIR.src + '/images/spinner.svg', to: 'images'},
-            {from: DIR.src + '/.package.json', to: 'package.json'},
-            {from: DIR.src + '/main.js'}
+            {from: `${DIR.src}/images/spinner.svg`, to: 'images'},
+            {from: `${DIR.src}/.package.json`, to: 'package.json'},
+            {from: `${DIR.src}/main.js`}
         ])
     ],
 
@@ -99,7 +99,7 @@ let config = {
             },
             {
                 test: /\.(less|css)$/,
-                loader: ExtractTextPlugin.extract("style-loader", "css?root=~images&sourceMap!less?sourceMap")
+                loader: ExtractTextPlugin.extract('style-loader', 'css?root=~images&sourceMap!less?sourceMap')
             },
             {
                 test: /\.svg$/,
