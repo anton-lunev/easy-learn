@@ -2,7 +2,7 @@
 
 import SidebarHeaderController from './sidebar-header.ctrl';
 
-let sidebarHeader = {
+const sidebarHeader = {
     template: require('./sidebar-header.tpl.html'),
     controller: SidebarHeaderController
 };

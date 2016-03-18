@@ -2,7 +2,7 @@
 
 import SidebarListController from './sidebar-list.ctrl';
 
-let sidebarList = {
+const sidebarList = {
     template: require('./sidebar-list.tpl.html'),
     bindings: {
         collections: '<'

@@ -103,10 +103,10 @@ const config = {
             },
             {
                 test: /\.svg$/,
-                loader: 'svg-sprite?' + JSON.stringify({
+                loader: `svg-sprite?${JSON.stringify({
                     name: '[name]',
                     angularBaseWorkaround: true
-                })
+                })}`
             }
         ]
     }
