@@ -1,4 +1,4 @@
-import './app.less';
+import './app.css';
 import 'images/app-icon.svg';
 
 import angular from 'angular';

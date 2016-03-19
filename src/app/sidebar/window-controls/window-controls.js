@@ -1,6 +1,6 @@
 'use strict';
 
-import './window-controls.less';
+import './window-controls.css';
 import angular from 'angular';
 
 import windowControls from './window-controls.component';

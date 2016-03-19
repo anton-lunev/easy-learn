@@ -1,7 +1,7 @@
 'use strict';
 
 import 'svg/plus.svg'
-import './sidebar-header.less';
+import './sidebar-header.css';
 
 import angular from 'angular';
 import sidebarHeader from './sidebar-header.component';

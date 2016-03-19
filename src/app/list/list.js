@@ -1,6 +1,6 @@
 'use strict';
 
-import './list.less';
+import './list.css';
 import angular from 'angular';
 import ListController from './list.ctrl';
 import listService from './list.service';

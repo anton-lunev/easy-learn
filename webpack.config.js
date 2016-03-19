@@ -1,4 +1,5 @@
 'use strict';
+/* eslint-env node */
 
 const path = require('path');
 
@@ -7,7 +8,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+const cssnext = require('postcss-cssnext');
+const csso = require('postcss-csso');
 const ENV = process.env.NODE_ENV || 'dev';
 const isProd = ENV === 'production';
 
@@ -99,7 +101,7 @@ const config = {
             },
             {
                 test: /\.(less|css)$/,
-                loader: ExtractTextPlugin.extract('style-loader', 'css?root=~images&sourceMap!less?sourceMap')
+                loader: ExtractTextPlugin.extract('style-loader', 'css?root=~images&sourceMap!postcss?sourceMap')
             },
             {
                 test: /\.svg$/,
@@ -109,6 +111,10 @@ const config = {
                 })}`
             }
         ]
+    },
+
+    postcss: () => {
+        return [cssnext, csso];
     }
 };
 

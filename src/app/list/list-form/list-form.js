@@ -1,6 +1,6 @@
 'use strict';
 
-import './list-form.less';
+import './list-form.css';
 import angular from 'angular';
 import listForm from './list-form.component';
 import googleTranslate from 'common/google-translate/google-translate.service';

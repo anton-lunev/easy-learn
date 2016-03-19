@@ -1,7 +1,7 @@
 'use strict';
 
 import 'svg/close.svg';
-import './sidebar-list.less';
+import './sidebar-list.css';
 
 import angular from 'angular';
 import sidebarList from './sidebar-list.component';

@@ -1,6 +1,6 @@
 'use strict';
 
-import './sidebar.less';
+import './sidebar.css';
 import angular from 'angular';
 import SidebarController from './sidebar.ctrl';
 import windowControls from './window-controls/window-controls';

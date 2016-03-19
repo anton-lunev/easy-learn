@@ -1,4 +1,5 @@
 'use strict';
+/* eslint-env node */
 
 const app = require('app');
 const BrowserWindow = require('browser-window');

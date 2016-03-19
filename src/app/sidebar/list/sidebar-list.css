@@ -52,7 +52,7 @@
         right: 15px;
         top: 10px;
 
-        .btn-collection {
+        & .btn-collection {
             width: 26px;
             height: 26px;
             box-sizing: border-box;
@@ -77,14 +77,14 @@
     }
 
     &:hover &__action {
-        .btn-collection {
+        & .btn-collection {
             opacity: 1;
             visibility: visible;
         }
     }
 
     &--active &__action {
-        .btn-collection {
+        & .btn-collection {
             border: 1px solid white;
             &__icon {
                 fill: #fff;
