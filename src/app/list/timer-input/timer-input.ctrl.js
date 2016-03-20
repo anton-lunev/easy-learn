@@ -1,6 +1,14 @@
 'use strict';
 
+/**
+ * Timer input controller
+ */
 class TimerInputController {
+    /**
+     * @constructor
+     * @param {object} $scope Scope object
+     * @param {object} timerService Timer service
+     */
     constructor($scope, timerService) {
         'ngInject';
         this.timerService = timerService;

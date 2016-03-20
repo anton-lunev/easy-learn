@@ -79,11 +79,11 @@ const config = {
 
     module: {
         preLoaders: [
-            // {
-            // test: /\.js$/,
-            // loader: 'eslint',
-            // exclude: /node_modules|bower_components/
-            // }
+            {
+                test: /\.js$/,
+                loader: 'eslint',
+                exclude: /node_modules/
+            }
         ],
         loaders: [
             {

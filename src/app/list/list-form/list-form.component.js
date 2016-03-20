@@ -2,7 +2,7 @@
 
 import ListFormController from './list-form.ctrl';
 
-let listForm = {
+const listForm = {
     template: require('./list-form.tpl.html'),
     bindings: {
         addToCollection: '<'

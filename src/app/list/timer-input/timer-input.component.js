@@ -2,7 +2,7 @@
 
 import TimerInputController from './timer-input.ctrl';
 
-let timerInput = {
+const timerInput = {
     template: require('./timer-input.tpl.html'),
     bindings: {
         collection: '<'

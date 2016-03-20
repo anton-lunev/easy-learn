@@ -13,7 +13,7 @@ export default $stateProvider => {
             }
         },
         resolve: {
-            collection($stateParams, dbService, collections) {
+            collection($stateParams, dbService, collections) { //eslint-disable-line
                 return dbService.getCollection($stateParams.id);
             }
         }
