@@ -1,10 +1,10 @@
 'use strict';
 /* eslint-env node */
-
-const app = require('app');
-const BrowserWindow = require('browser-window');
-const ipc = require('electron').ipcMain;
-const Menu = require('menu');
+const electron = require('electron');
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
+const ipc = electron.ipcMain;
+const Menu = electron.menu;
 
 // prevent window being garbage collected
 let mainWindow;
@@ -18,8 +18,8 @@ function createMainWindow() {
         'frame': false,
         'height': 395,
         'width': 680,
-        'min-width': 680,
-        'min-height': 395
+        'minWidth': 680,
+        'minHeight': 395
     });
 
     if (process.env['NODE_ENV'] !== 'dev') {
