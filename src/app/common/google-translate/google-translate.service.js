@@ -3,7 +3,7 @@ import angular from 'angular';
 
 export default angular.module('googleTranslate', [])
     .constant('googleTranslateConfig', {
-        domain: 'https://translate.googleapis.com',
+        domain: 'https://crossorigin.me/https://translate.googleapis.com',
         source: 'en',
         target: 'ru'
     })
@@ -20,6 +20,7 @@ export default angular.module('googleTranslate', [])
             playAudio(word, timeout = 0) {
                 const audioUrl = `${googleTranslateConfig.domain}/translate_tts?client=gtx&tl=en&q=${decodeURI(word)}`;
                 const audio = new Audio(audioUrl);
+                // audio.autoplay = true;
                 $timeout(() => {
                     audio.play();
                 }, timeout);
