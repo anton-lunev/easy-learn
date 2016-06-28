@@ -1,86 +1,84 @@
-import angular from 'angular';
 import LokiIndexedAdapter from 'lokijs/src/loki-indexed-adapter';
-import lokijs from 'lokijs/src/loki-angular';
 
-const deps = [
-    lokijs.name
-];
+/**
+ * Collection service
+ */
+class CollectionService {
+    _collections = {};
+    _db;
 
-export default angular.module('db', deps)
-    .factory('dbService', function CollectionService($q, Loki) {
+    /**
+     * @constructor
+     * @param {function} $q deferred
+     * @param {function} Loki constructor
+     */
+    constructor($q, Loki) {
         'ngInject';
 
-        let _db;
-        let _collections = {};
-        initDB();
+        this._$q = $q;
+        this._db = new Loki('list', {
+            autosave: true,
+            autosaveInterval: 1000,
+            adapter: new LokiIndexedAdapter('easy-learn')
+        });
+    }
 
-        /**
-         * Init database
-         */
-        function initDB() {
-            _db = new Loki('list', {
-                autosave: true,
-                autosaveInterval: 1000,
-                adapter: new LokiIndexedAdapter('easy-learn')
+    /**
+     * Returned all collections
+     * @returns {*} promise
+     */
+    getCollections() {
+        return this._$q(resolve => {
+            const options = {
+                collections: {
+                    proto: Object
+                }
+            };
+
+            this._db.loadDatabase(options, () => {
+                this._collections = this._db.getCollection('collections');
+
+                if (!this._collections) {
+                    this._collections = this._db.addCollection('collections', {autoupdate: true});
+                }
+
+                resolve(this._collections.data);
             });
-        }
+        });
+    }
 
-        return {
-            /**
-             * Returned all collections
-             * @returns {*} promise
-             */
-            getCollections() {
-                return $q(resolve => {
-                    const options = {
-                        collections: {
-                            proto: Object
-                        }
-                    };
+    /**
+     * Returned collection by id
+     * @param {int} id Collection id
+     * @returns {object} Collection object
+     */
+    getCollection(id) {
+        return this._collections.get(id);
+    }
 
-                    _db.loadDatabase(options, () => {
-                        _collections = _db.getCollection('collections');
+    /**
+     * Add new collection
+     * @param {object} collection New collection
+     */
+    addCollection(collection) {
+        this._collections.insert(collection);
+    }
 
-                        if (!_collections) {
-                            _collections = _db.addCollection('collections', {autoupdate: true});
-                        }
+    /**
+     * Update collection data
+     * @param {object} collection Collection object
+     */
+    updateCollection(collection) {
+        this._collections.update(collection);
+    }
 
-                        resolve(_collections.data);
-                    });
-                });
-            },
+    /**
+     * Delete collection
+     * @param {object} collection Collection object
+     */
+    deleteCollection(collection) {
+        this._collections.remove(collection);
+    }
+}
 
-            /**
-             * Returned collection by id
-             * @param {int} id Collection id
-             * @returns {object} Collection object
-             */
-            getCollection(id) {
-                return _collections.get(id);
-            },
-
-            /**
-             * Add new collection
-             * @param {object} collection New collection
-             */
-            addCollection(collection) {
-                _collections.insert(collection);
-            },
-
-            /**
-             * Update collection data
-             * @param {object} collection Collection object
-             */
-            updateCollection(collection) {
-                _collections.update(collection);
-            },
-
-            /**
-             * Delete collection
-             * @param {object} collection Collection object
-             */
-            deleteCollection(collection) {
-                _collections.remove(collection);
-            }
-        };
-    });
+export default CollectionService;

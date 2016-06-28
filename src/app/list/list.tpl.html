@@ -3,6 +3,9 @@
 
     <section class="list-container__header">
         <h2 class="list-container__title" ng-bind="list.collection.name"></h2>
+        <svg class="icon" style="display: none;">
+            <use xlink:href="#edit" />
+        </svg>
 
         <list-form add-to-collection="list.addToCollection"></list-form>
     </section>

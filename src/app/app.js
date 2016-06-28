@@ -6,7 +6,7 @@ import angular from 'angular';
 import LocalStorageModule from 'angular-local-storage';
 import uiRouter from 'angular-ui-router';
 
-import db from './common/db/db.service';
+import db from './common/db';
 import route from './app.route';
 import config from './app.config';
 import sidebar from './sidebar/sidebar';
