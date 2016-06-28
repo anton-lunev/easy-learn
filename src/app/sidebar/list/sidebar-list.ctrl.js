@@ -10,7 +10,16 @@ class SidebarListController {
      */
     constructor(dbService) {
         'ngInject';
-        this.removeCollection = dbService.deleteCollection;
+
+        this._dbService = dbService;
+    }
+
+    /**
+     * Remove collection
+     * @param {object} collection Removed collection
+     */
+    removeCollection(collection) {
+        this._dbService.deleteCollection(collection)
     }
 }
 
