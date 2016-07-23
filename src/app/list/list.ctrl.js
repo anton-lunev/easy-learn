@@ -18,7 +18,7 @@ class ListController {
 
         this.collection = collection;
 
-        $scope.$watch('list.collection.list', (val, oldVal) => {
+        $scope.$watch(() => this.collection.list, (val, oldVal) => {
             if (!angular.equals(val, oldVal)) {
                 dbService.updateCollection(this.collection);
             }

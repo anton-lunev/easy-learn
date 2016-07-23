@@ -13,7 +13,7 @@ class TimerInputController {
         'ngInject';
         this.timerService = timerService;
 
-        $scope.$watch('$ctrl.timerService.timer.time', this.timerService.updateTime);
+        $scope.$watch(() => this.timerService.timer.time, this.timerService.updateTime);
     }
 }
 
